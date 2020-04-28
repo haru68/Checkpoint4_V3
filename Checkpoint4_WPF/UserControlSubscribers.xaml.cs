@@ -61,7 +61,7 @@ namespace Checkpoint4_WPF
             }
             else
             {
-                DialogBox.Ok("Error", "Invalid login and/or passowrd. Please, try again");
+                DialogBox.Ok("Error", "Invalid login and/or password. Please, try again");
             }
             ResetLogin();
         }
@@ -126,6 +126,7 @@ namespace Checkpoint4_WPF
             StreetName_TxtBox.Text = string.Empty;
             CityName_TxtBox.Text = string.Empty;
             PostalCode_TxtBox.Text = string.Empty;
+            Region_cmbBox.SelectedIndex = -1;
         }
 
         private void OnlyNumbers(object sender, TextCompositionEventArgs e)
