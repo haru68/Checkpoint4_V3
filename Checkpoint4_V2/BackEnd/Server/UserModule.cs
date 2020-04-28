@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Nancy;
-using System.Data.SqlClient;
 using System.Linq;
 using Newtonsoft.Json;
-using System.Net.Http;
-using System.Net;
 
 namespace Checkpoint4_V2
 {
@@ -62,7 +57,6 @@ namespace Checkpoint4_V2
                 }
             });
         }
-
         
         private string GetCurrentUser()
         {
@@ -93,6 +87,5 @@ namespace Checkpoint4_V2
             string serialized = JsonConvert.SerializeObject(stars);
             return serialized;
         }
-
     }
 }

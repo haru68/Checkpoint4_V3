@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Linq;
 
 namespace Checkpoint4_V2
@@ -9,7 +7,7 @@ namespace Checkpoint4_V2
     {
         public User LoginUsers(string login, string password)
         {
-            String encryptedPassword = CryptPassword(password.ToString());
+            String encryptedPassword = Password.Encrypt(password.ToString());
 
             using (var context = new CircusContext())
             {
@@ -17,18 +15,5 @@ namespace Checkpoint4_V2
             }
         }
 
-        private String CryptPassword(string password)
-        {
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-            SHA256 hasher = SHA256.Create();
-            byte[] encryptedPasswordBytes = hasher.ComputeHash(passwordBytes);
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < encryptedPasswordBytes.Length; i++)
-            {
-                builder.Append(encryptedPasswordBytes[i].ToString("x2"));
-            }
-            String encryptedPassword = builder.ToString();
-            return encryptedPassword;
-        }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace Checkpoint4_V2
 {

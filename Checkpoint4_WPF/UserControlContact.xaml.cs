@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Checkpoint4_V2;
 
 namespace Checkpoint4_WPF
@@ -42,6 +34,7 @@ namespace Checkpoint4_WPF
                 ContactForm contact = ContactFormFactory.Create(mail, firstName, name, telephonNumber, text);
                 if (contact.SendForm())
                 {
+                    Reset();
                     DialogBox.Ok("Well done", "Your contact form has been sent. We will reply you asap.");
                 }
                 else
@@ -53,19 +46,30 @@ namespace Checkpoint4_WPF
 
         private bool AreAllFieldsComplete()
         {
-            if (String.IsNullOrEmpty(Name_TxtBox.Text)
-                || String.IsNullOrEmpty(FirstName_TxtBox.Text)
-                || String.IsNullOrEmpty(Mail_TxtBox.Text)
-                || String.IsNullOrEmpty(Telephone_TxtBox.Text)
-                || String.IsNullOrEmpty(Text_TxtBox.Text))
+            List<String> fields = new List<string>();
+            fields.Add(Name_TxtBox.Text);
+            fields.Add(FirstName_TxtBox.Text);
+            fields.Add(Mail_TxtBox.Text);
+            fields.Add(Telephone_TxtBox.Text);
+            fields.Add(Text_TxtBox.Text);
+            if (InputChecker.AreAllFieldsComplete(fields))
+            {
+                return true;
+            }
+            else
             {
                 DialogBox.Ok("Error", "Please, fill all the fields");
                 return false;
             }
-            else
-            {
-                return true;
-            }
+        }
+
+        private void Reset()
+        {
+            Mail_TxtBox.Text = String.Empty;
+            FirstName_TxtBox.Text = String.Empty;
+            Name_TxtBox.Text = String.Empty;
+            Telephone_TxtBox.Text = String.Empty;
+            Text_TxtBox.Text = String.Empty;
         }
     }
 }

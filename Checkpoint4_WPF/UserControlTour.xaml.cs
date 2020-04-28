@@ -30,13 +30,12 @@ namespace Checkpoint4_WPF
 
         private void AddProcessingOrder_btn(object sender, RoutedEventArgs e)
         {
-            int adults = GetAdults();
-            int children = GetChildren();
-            if((Tours_lv.SelectedItems != null && adults != -1) 
-                || (Tours_lv.SelectedItems != null && children != -1))
+            int adults = InputChecker.GetNumber(AdultNumber_TxtBox.Text);
+            int children = InputChecker.GetNumber(ChildrenNumber_TxtBox.Text);
+            if(Tours_lv.SelectedItems != null && (adults > 0 || children > 0))
             {
                 Tour selectedTour = (Tour)Tours_lv.SelectedItem;
-                if((selectedTour.AvailableSeats - (adults + children)) >= 0)
+                if(selectedTour.IsEnoughAvailableSeats(adults + children))
                 {
                     ProcessingOrder processingOrder = ProcessingOrderFactory.Create(adults, children, selectedTour);
                     if (processingOrder.IsOrderRegistered())
@@ -45,7 +44,7 @@ namespace Checkpoint4_WPF
                     }
                     else
                     {
-                        ProcessingOrderFactory.AddInSingleton(processingOrder);
+                        processingOrder.AddInSingleton();
                         selectedTour.BookSeats(adults + children);
                         DialogBox.Ok("Success", "Order has been recorded");
                     }
@@ -59,20 +58,6 @@ namespace Checkpoint4_WPF
             {
                 DialogBox.Ok("Error", "Please, check fields");
             }
-        }
-
-        private int GetAdults()
-        {
-            int adults = -1;
-            Int32.TryParse(AdultNumber_TxtBox.Text, out adults);
-            return adults;
-        }
-
-        private int GetChildren()
-        {
-            int children = -1;
-            Int32.TryParse(ChildrenNumber_TxtBox.Text, out children);
-            return children;
         }
 
         private void Number_Preview(object sender, TextCompositionEventArgs e)

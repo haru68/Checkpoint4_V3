@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Checkpoint4_V2
 {
@@ -17,7 +16,7 @@ namespace Checkpoint4_V2
             {
                 processingOrders = UserSingleton.GetInstance.ProcessingOrders;
                 List<PastOrder> pastOrders = PastOrderFactory.CreateSeveral(processingOrders, UserSingleton.GetInstance.User);
-                pastOrders.ForEach(p => p.Record());
+                pastOrders.ForEach(p => p.RecordInDb());
                 UserSingleton.GetInstance.PastOrders.AddRange(pastOrders);
                 UserSingleton.GetInstance.ProcessingOrders.Clear();
             }
@@ -44,14 +43,7 @@ namespace Checkpoint4_V2
 
         public bool CanAddPerson()
         {
-            if(this.Tour.AvailableSeats >= 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return this.Tour.IsEnoughAvailableSeats(1);
         }
 
 
@@ -145,6 +137,31 @@ namespace Checkpoint4_V2
                 isOrderRegisterd = UserSingleton.VisitorProcessingOrders.Contains(this);
             }
             return isOrderRegisterd;
+        }
+
+        public void AddInSingleton()
+        {
+            if (UserSingleton.GetInstance.IsAuthenticated == false)
+            {
+                UserSingleton.VisitorProcessingOrders.Add(this);
+            }
+            else
+            {
+                UserSingleton.GetInstance.ProcessingOrders.Add(this);
+            }
+        }
+
+        public void Delete()
+        {
+            if (UserSingleton.GetInstance.IsAuthenticated)
+            {
+                UserSingleton.GetInstance.ProcessingOrders.Remove(this);
+            }
+            else
+            {
+                UserSingleton.VisitorProcessingOrders.Remove(this);
+            }
+            this.Tour.DeBookSeats(this.AdultNumber + this.ChildrenNumber);
         }
     }
 }

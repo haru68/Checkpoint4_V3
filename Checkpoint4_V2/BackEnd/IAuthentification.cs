@@ -1,4 +1,6 @@
-﻿namespace Checkpoint4_V2
+﻿
+
+namespace Checkpoint4_V2
 {
     public interface IAuthentification
     {

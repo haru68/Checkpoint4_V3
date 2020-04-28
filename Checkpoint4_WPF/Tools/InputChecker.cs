@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using Checkpoint4_V2;
 
 namespace Checkpoint4_WPF
 {
@@ -89,6 +87,26 @@ namespace Checkpoint4_WPF
                 DialogBox.Ok("Error", "Invalid postal code");
                 return false;
             }
+        }
+
+        public static bool AreAllFieldsComplete(List<String> fields)
+        {
+            bool complete = true;
+            foreach(String field in fields)
+            {
+                if (String.IsNullOrEmpty(field))
+                {
+                    complete = false;
+                }
+            }
+            return complete;
+        }
+
+        public static int GetNumber(string text)
+        {
+            int number = -1;
+            Int32.TryParse(text, out number);
+            return number;
         }
     }
 }

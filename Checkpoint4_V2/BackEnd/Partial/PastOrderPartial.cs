@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Checkpoint4_V2
 {
     public partial class PastOrder
     {
-        public void Record()
+        public void RecordInDb()
         {
             using (var context = new CircusContext())
             {

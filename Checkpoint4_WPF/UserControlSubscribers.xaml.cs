@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Checkpoint4_V2;
-using Checkpoint4_V2.BackEnd;
 
 namespace Checkpoint4_WPF
 {
@@ -27,13 +17,18 @@ namespace Checkpoint4_WPF
             Region_cmbBox.ItemsSource = RegionLoader.Load();
             if(UserSingleton.GetInstance.IsAuthenticated)
             {
-                Login_Grid.Visibility = Visibility.Hidden;
-                Inscription_Grid.Visibility = Visibility.Hidden;
-                WelcomUser_Grid.Visibility = Visibility.Visible;
-                Welcome_TxtBlock.Text = "Welcome " + UserSingleton.GetInstance.User.Login;
-                Login_Btn.Visibility = Visibility.Hidden;
-                Inscription_Btn.Visibility = Visibility.Hidden;
+                CanOnlyDisconnect();
             }
+        }
+
+        private void CanOnlyDisconnect()
+        {
+            Welcome_TxtBlock.Text = "Welcome " + UserSingleton.GetInstance.User.Login;
+            WelcomUser_Grid.Visibility = Visibility.Visible;
+            Login_Grid.Visibility = Visibility.Hidden;
+            Inscription_Grid.Visibility = Visibility.Hidden;
+            Login_Btn.Visibility = Visibility.Hidden;
+            Inscription_Btn.Visibility = Visibility.Hidden;
         }
 
         private void DiplayInscription(object sender, RoutedEventArgs e)
@@ -62,11 +57,7 @@ namespace Checkpoint4_WPF
             if (UserSingleton.GetInstance.IsAuthenticated)
             {
                 User user = UserSingleton.GetInstance.User;
-                Welcome_TxtBlock.Text = "Welcome " + user.Login;
-                Login_Grid.Visibility = Visibility.Hidden;
-                WelcomUser_Grid.Visibility = Visibility.Visible;
-                Login_Btn.Visibility = Visibility.Hidden;
-                Inscription_Btn.Visibility = Visibility.Hidden;
+                CanOnlyDisconnect();
             }
             else
             {
