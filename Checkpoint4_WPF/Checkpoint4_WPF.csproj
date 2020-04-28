@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Front_Picture\Circus-Ticket.jpg" />
+    <None Remove="Front_Picture\CircusOnTour.jpg" />
+    <None Remove="Front_Picture\Dream.jpg" />
+    <None Remove="Front_Picture\Laugh.jpg" />
+    <None Remove="Front_Picture\Main_Picture3_Filter.png" />
+    <None Remove="Front_Picture\MarvelAt.jpg" />
+    <None Remove="Front_Picture\Performance.jpg" />
+    <None Remove="Front_Picture\Star0.jpg" />
+    <None Remove="Front_Picture\Star1.jpg" />
+    <None Remove="Front_Picture\Star2.jpg" />
+    <None Remove="Front_Picture\Star3.jpg" />
+    <None Remove="Front_Picture\Star4.jpg" />
+    <None Remove="Front_Picture\Subscribers.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Front_Picture\Dream.jpg" />
+    <Resource Include="Front_Picture\Laugh.jpg" />
+    <Resource Include="Front_Picture\MarvelAt.jpg" />
+    <Resource Include="Front_Picture\Star0.jpg" />
+    <Resource Include="Front_Picture\Star1.jpg" />
+    <Resource Include="Front_Picture\Star2.jpg" />
+    <Resource Include="Front_Picture\Star3.jpg" />
+    <Resource Include="Front_Picture\Star4.jpg" />
+    <Resource Include="Front_Picture\Subscribers.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="1.2.3" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Checkpoint4_V2\Checkpoint4_V2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Front_Picture\Circus-Ticket.jpg" />
+    <Resource Include="Front_Picture\CircusOnTour.jpg" />
+    <Resource Include="Front_Picture\Main_Picture3_Filter.png">
+      <CustomToolNamespace>MainImage</CustomToolNamespace>
+    </Resource>
+    <Resource Include="Front_Picture\Performance.jpg" />
+  </ItemGroup>
+
+</Project>

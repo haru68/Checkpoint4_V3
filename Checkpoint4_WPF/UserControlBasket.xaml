@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="Checkpoint4_WPF.UserControlBasket"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Checkpoint4_WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Orders" FontSize="40" FontFamily="Comic Sans MS" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <ComboBox x:Name="CmbBox_Selection" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" SelectionChanged="CmbBox_SelectionChanged">
+            <ComboBoxItem x:Name="CurrentOrdersItem">
+                <TextBlock Text="Current orders" FontSize="15" FontWeight="Bold"/>
+            </ComboBoxItem>
+            <ComboBoxItem x:Name="PastOrdersItem">
+                <TextBlock Text="Historic of orders" FontSize="15" FontWeight="Bold"/>
+            </ComboBoxItem>
+        </ComboBox>
+        
+        <Grid Grid.Row="2" x:Name="ProcessingOrder_Grid" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0.3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Processing orders" FontSize="20" FontWeight="Bold"/>
+            <ListView x:Name="ProcessingOrders_lv" Grid.Row="1" HorizontalAlignment="Center">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200" Header="Performance" x:Name="PerformanceName">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Tour.Performance.Name}" Cursor="Arrow"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="80" Header="Date" x:Name="TourDate">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Tour.Date}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="City" x:Name="TourPlace">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Tour.Place.City.Name}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="N° Adult" x:Name="AdultNumber">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding AdultNumber}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="N° Children" x:Name="ChildrenNumber">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ChildrenNumber}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="Total amount" x:Name="TotalAmount">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding TotalAmount}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                <Button  Margin="0,0,10,0" Click="DeleteOrder_Btn" Background="#571FFF" BorderBrush="#7917EB" ToolTip="Delete selected command">
+                    <materialDesign:PackIcon Kind="Delete" Width="25" Height="25" />
+                </Button>
+                <Button Click="AddAdult_Btn" Content="Add an adult" Margin="0,0,10,0"/>
+                <Button Click="RemoveAdult_Btn" Content="Remove an adult" Margin="0,0,10,0"/>
+                <Button Click="AddChild_Btn" Content="add a child" Margin="0,0,10,0"/>
+                <Button Click="RemoveChild_Btn" Content="Remove a child" Margin="0,0,10,0"/>
+                <Button  Margin="0,0,10,0" Click="PayOrder_Btn" Background="#571FFF" BorderBrush="#7917EB" ToolTip="Confirm command">
+                    <materialDesign:PackIcon Kind="Payment" Width="25" Height="25" />
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" x:Name="PastOrders_Grid" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Past orders" FontSize="20" FontWeight="Bold"/>
+            <ListView x:Name="PastOrders_lv" Grid.Row="1" HorizontalAlignment="Center">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="180" Header="Purchase Date" x:Name="PurchaseDate_PastOrders">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Date}" Cursor="Arrow"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" Header="Performance" x:Name="PerformanceName_PastOrders">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Tour.Performance.Name}" Cursor="Arrow"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="80" Header="Date" x:Name="TourDate_PastOrders">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Tour.Date}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150" Header="City" x:Name="TourPlace_PastOrders">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Tour.Place.City.Name}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="Total amount" x:Name="TotalAmount_PastOrders">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Amount}" Cursor="Hand"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

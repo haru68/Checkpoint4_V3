@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Checkpoint4_WPF.UserControlAboutUs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Checkpoint4_WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="About us" FontSize="40" FontFamily="Comic Sans MS" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" FontFamily="Comic Sans MS" FontSize="15" TextWrapping="Wrap"  TextAlignment="Justify">
+            Created in 2019, in France, the Wild Circus is a part of the Wild Code School Company. <LineBreak/>
+            Thanks to its marvelous leader, Corentin Prevost, the Wild Circus has quickly became one of the guiding light in the world of circus! <LineBreak/>
+        </TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" Foreground="White" FontSize="25" Text="Yesterday" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" FontFamily="Comic Sans MS" FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify">
+            Nowadays, we welcome thousands of visitors every year. And our policy is to give the best of us in order to offer them some incredible 
+            new skills in computing science.
+        </TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Foreground="White" FontSize="25" Text="Today" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" FontFamily="Comic Sans MS" FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify">
+            For the next, we cannot wait to see you further and enjoy a totaly new experience in one of our circus! <LineBreak/>
+            Our animators will be more than happy to welcome you again and take you to a higher level of experience!
+        </TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" Foreground="White" FontSize="25" Text="Tomorrow" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"/>
+
+    </Grid>
+</UserControl>
