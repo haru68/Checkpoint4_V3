@@ -35,23 +35,26 @@ namespace Checkpoint4_WPF
             if(Tours_lv.SelectedItems != null && (adultNumber > 0 || childrenNumber > 0))
             {
                 Tour selectedTour = (Tour)Tours_lv.SelectedItem;
-                if(selectedTour.IsEnoughAvailableSeats(adultNumber + childrenNumber))
+                if(selectedTour != null)
                 {
-                    ProcessingOrder processingOrder = ProcessingOrderFactory.Create(adultNumber, childrenNumber, selectedTour);
-                    if (processingOrder.IsOrderRegistered())
+                    if (selectedTour.IsEnoughAvailableSeats(adultNumber + childrenNumber))
                     {
-                        DialogBox.Ok("Error", "Such an order already exists.");
+                        ProcessingOrder processingOrder = ProcessingOrderFactory.Create(adultNumber, childrenNumber, selectedTour);
+                        if (processingOrder.IsOrderRegistered())
+                        {
+                            DialogBox.Ok("Error", "Such an order already exists.");
+                        }
+                        else
+                        {
+                            processingOrder.AddInSingleton();
+                            selectedTour.BookSeats(adultNumber + childrenNumber);
+                            DialogBox.Ok("Success", "Order has been recorded");
+                        }
                     }
                     else
                     {
-                        processingOrder.AddInSingleton();
-                        selectedTour.BookSeats(adultNumber + childrenNumber);
-                        DialogBox.Ok("Success", "Order has been recorded");
+                        DialogBox.Ok("Error", "Snif, not enough place. Check for another");
                     }
-                }
-                else
-                {
-                    DialogBox.Ok("Error", "Snif, not enough place. Check for another");
                 }
             }
             else

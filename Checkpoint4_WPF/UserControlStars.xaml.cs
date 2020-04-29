@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using Checkpoint4_V2;
 
 namespace Checkpoint4_WPF
@@ -19,6 +20,14 @@ namespace Checkpoint4_WPF
             {
                 Star_lv.ItemsSource = StarLoader.Load();
             }
+        }
+
+        private void ExportStars_Btn(object sender, RoutedEventArgs e)
+        {
+            NancyRequest nancyRequest = new NancyRequest();
+            string response = nancyRequest.ExecuteRequest("Stars", "GET");
+            FileWriter.Write("Stars", response);
+            DialogBox.Ok("Success", "Stars exported well. \n Check Root folder in main folder.");
         }
     }
 }

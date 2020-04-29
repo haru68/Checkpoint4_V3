@@ -77,6 +77,7 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
             <Button Content="Tours" Click="SeeTours_Btn" Margin="10"/>
             <Button Content="Stars" Click="SeeStars_Btn" Margin="10"/>
+            <Button Content="Export" Click="ExportPerformances_Btn" Margin="10"/>
         </StackPanel>
 
 

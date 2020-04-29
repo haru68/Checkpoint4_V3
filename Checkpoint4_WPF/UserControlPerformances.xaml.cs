@@ -55,5 +55,15 @@ namespace Checkpoint4_WPF
 
             this.Content = usc;
         }
+
+        private void ExportPerformances_Btn(object sender, RoutedEventArgs e)
+        {
+            NancyRequest nancyRequest = new NancyRequest();
+            string response = nancyRequest.ExecuteRequest("Performances", "GET");
+            FileWriter.Write("Performances", response);
+            DialogBox.Ok("Success", "Performances exported well. \n Check Root folder in main folder.");
+        }
+
+        
     }
 }

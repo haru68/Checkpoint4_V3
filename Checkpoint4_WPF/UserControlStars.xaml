@@ -16,6 +16,8 @@
                    Text="Stars" FontSize="40" FontFamily="Comic Sans MS" Foreground="Red">
         </TextBlock>
 
+        <Button Content="Export" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ExportStars_Btn" Margin="15"/>
+
         <ListView x:Name="Star_lv" Grid.Row="1" Margin="0,10,0,10">
             <ListView.View>
                 <GridView>
