@@ -7,7 +7,7 @@ namespace Checkpoint4_V2
 {
     public class UserModule : NancyModule
     {
-        public CircusContext Context { get; set; }
+        public new CircusContext Context { get; set; }
         public UserModule()
         {
             Context = new CircusContext();
@@ -80,6 +80,7 @@ namespace Checkpoint4_V2
             string serialized = JsonConvert.SerializeObject(performances);
             return serialized;
         }
+
         private object GetStars()
         {
             List<Star> stars = (from s in Context.Stars

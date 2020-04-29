@@ -2,7 +2,7 @@
 
 namespace Checkpoint4_V2
 {
-    public partial class User
+    public partial class User : AbstractDatabaseRecorder
     {
         public static bool IsInDb(string login, string password)
         {
@@ -14,15 +14,6 @@ namespace Checkpoint4_V2
                           select u).Any();
             }
             return isInDb;
-        }
-
-        public void RecordInDb()
-        {
-            using (var context = new CircusContext())
-            {
-                context.Update(this);
-                context.SaveChanges();
-            }
         }
     }
 }

@@ -2,26 +2,18 @@
 
 namespace Checkpoint4_V2
 {
-    public partial class Tour
+    public partial class Tour : AbstractDatabaseRecorder
     {
         public void BookSeats(int numberOfSeats)
         {
             this.AvailableSeats = this.AvailableSeats - numberOfSeats;
-            using (var context = new CircusContext())
-            {
-                context.Update(this);
-                context.SaveChanges();
-            }
+            RecordInDb();
         }
 
         public void DeBookSeats(int numberOfSeats)
         {
             this.AvailableSeats = this.AvailableSeats + numberOfSeats;
-            using (var context = new CircusContext())
-            {
-                context.Update(this);
-                context.SaveChanges();
-            }
+            RecordInDb();
         }
 
         public bool IsEnoughAvailableSeats(int wishedSeats)

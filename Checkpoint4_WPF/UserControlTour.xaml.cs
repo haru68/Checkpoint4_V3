@@ -30,14 +30,14 @@ namespace Checkpoint4_WPF
 
         private void AddProcessingOrder_btn(object sender, RoutedEventArgs e)
         {
-            int adults = InputChecker.GetNumber(AdultNumber_TxtBox.Text);
-            int children = InputChecker.GetNumber(ChildrenNumber_TxtBox.Text);
-            if(Tours_lv.SelectedItems != null && (adults > 0 || children > 0))
+            int adultNumber = InputChecker.GetNumber(AdultNumber_TxtBox.Text);
+            int childrenNumber = InputChecker.GetNumber(ChildrenNumber_TxtBox.Text);
+            if(Tours_lv.SelectedItems != null && (adultNumber > 0 || childrenNumber > 0))
             {
                 Tour selectedTour = (Tour)Tours_lv.SelectedItem;
-                if(selectedTour.IsEnoughAvailableSeats(adults + children))
+                if(selectedTour.IsEnoughAvailableSeats(adultNumber + childrenNumber))
                 {
-                    ProcessingOrder processingOrder = ProcessingOrderFactory.Create(adults, children, selectedTour);
+                    ProcessingOrder processingOrder = ProcessingOrderFactory.Create(adultNumber, childrenNumber, selectedTour);
                     if (processingOrder.IsOrderRegistered())
                     {
                         DialogBox.Ok("Error", "Such an order already exists.");
@@ -45,7 +45,7 @@ namespace Checkpoint4_WPF
                     else
                     {
                         processingOrder.AddInSingleton();
-                        selectedTour.BookSeats(adults + children);
+                        selectedTour.BookSeats(adultNumber + childrenNumber);
                         DialogBox.Ok("Success", "Order has been recorded");
                     }
                 }

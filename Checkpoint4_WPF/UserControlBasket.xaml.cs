@@ -25,48 +25,60 @@ namespace Checkpoint4_WPF
 
         private void AddAdult_Btn(object sender, RoutedEventArgs e)
         {
-            ProcessingOrder po = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
-            if(po.CanAddPerson())
+            ProcessingOrder processingOrder = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
+            if(processingOrder != null)
             {
-                po.AddAdult();
-            }
-            else
-            {
-                DialogBox.Ok("Error", "Not enough seats available");
+                if (processingOrder.CanAddPerson())
+                {
+                    processingOrder.AddAdult();
+                }
+                else
+                {
+                    DialogBox.Ok("Error", "Not enough seats available");
+                }
             }
             ProcessingOrders_lv.Items.Refresh();
         }
 
         private void RemoveAdult_Btn(object sender, RoutedEventArgs e)
         {
-            ProcessingOrder po = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
-            if(po.CanRemoveAdult())
+            ProcessingOrder processingOrder = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
+            if (processingOrder != null)
             {
-                po.RemoveAdult();
+                if (processingOrder.CanRemoveAdult())
+                {
+                    processingOrder.RemoveAdult();
+                }
             }
             ProcessingOrders_lv.Items.Refresh();
         }
 
         private void AddChild_Btn(object sender, RoutedEventArgs e)
         {
-            ProcessingOrder po = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
-            if(po.CanAddPerson())
+            ProcessingOrder processingOrder = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
+            if (processingOrder != null)
             {
-                po.AddChild();
-            }
-            else
-            {
-                DialogBox.Ok("Error", "Not enough seats available");
+                if (processingOrder.CanAddPerson())
+                {
+                    processingOrder.AddChild();
+                }
+                else
+                {
+                    DialogBox.Ok("Error", "Not enough seats available");
+                }
             }
             ProcessingOrders_lv.Items.Refresh();
         }
 
         private void RemoveChild_Btn(object sender, RoutedEventArgs e)
         {
-            ProcessingOrder po = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
-            if(po.CanRemoveChild())
+            ProcessingOrder processingOrder = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
+            if (processingOrder != null)
             {
-                po.RemoveChild();
+                if (processingOrder.CanRemoveChild())
+                {
+                    processingOrder.RemoveChild();
+                }
             }
             ProcessingOrders_lv.Items.Refresh();
         }
@@ -87,8 +99,11 @@ namespace Checkpoint4_WPF
 
         private void DeleteOrder_Btn(object sender, RoutedEventArgs e)
         {
-            ProcessingOrder poToDelete = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
-            poToDelete.Delete();
+            ProcessingOrder processingOrder = (ProcessingOrder)ProcessingOrders_lv.SelectedItem;
+            if (processingOrder != null)
+            {
+                processingOrder.Delete();
+            }
             ProcessingOrders_lv.Items.Refresh();
         }
 

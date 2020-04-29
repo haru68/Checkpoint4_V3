@@ -28,10 +28,10 @@ namespace Checkpoint4_WPF
             {
                 string mail = Mail_TxtBox.Text;
                 string firstName = FirstName_TxtBox.Text;
-                string name = Name_TxtBox.Text;
-                string telephonNumber = Telephone_TxtBox.Text;
+                string familyName = Name_TxtBox.Text;
+                string phoneNumber = Telephone_TxtBox.Text;
                 string text = Text_TxtBox.Text;
-                ContactForm contact = ContactFormFactory.Create(mail, firstName, name, telephonNumber, text);
+                ContactForm contact = ContactFormFactory.Create(mail, firstName, familyName, phoneNumber, text);
                 if (contact.SendForm())
                 {
                     Reset();

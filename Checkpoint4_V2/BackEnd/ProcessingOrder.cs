@@ -28,16 +28,16 @@ namespace Checkpoint4_V2
             if (UserSingleton.GetInstance.IsAuthenticated == true)
             {
                 UserSingleton.GetInstance.ProcessingOrders.Remove(this);
-                this.AdultNumber += 1;
+                AdultNumber += 1;
                 UserSingleton.GetInstance.ProcessingOrders.Add(this);
-                this.Tour.BookSeats(1);
+                Tour.BookSeats(1);
             }
             else if (!UserSingleton.GetInstance.IsAuthenticated)
             {
                 UserSingleton.VisitorProcessingOrders.Remove(this);
-                this.AdultNumber += 1;
+                AdultNumber += 1;
                 UserSingleton.VisitorProcessingOrders.Add(this);
-                this.Tour.BookSeats(1);
+                Tour.BookSeats(1);
             }
         }
 
@@ -52,22 +52,22 @@ namespace Checkpoint4_V2
             if (UserSingleton.GetInstance.IsAuthenticated)
             {
                 UserSingleton.GetInstance.ProcessingOrders.Remove(this);
-                this.AdultNumber -= 1;
+                AdultNumber -= 1;
                 UserSingleton.GetInstance.ProcessingOrders.Add(this);
-                this.Tour.DeBookSeats(1);
+                Tour.DeBookSeats(1);
             }
             else if (!UserSingleton.GetInstance.IsAuthenticated)
             {
                 UserSingleton.VisitorProcessingOrders.Remove(this);
-                this.AdultNumber -= 1;
+                AdultNumber -= 1;
                 UserSingleton.VisitorProcessingOrders.Add(this);
-                this.Tour.DeBookSeats(1);
+                Tour.DeBookSeats(1);
             }
         }
 
         public bool CanRemoveAdult()
         {
-            if(this.AdultNumber >= 1)
+            if(AdultNumber >= 1)
             {
                 return true;
             }
@@ -82,22 +82,22 @@ namespace Checkpoint4_V2
             if (UserSingleton.GetInstance.IsAuthenticated)
             {
                 UserSingleton.GetInstance.ProcessingOrders.Remove(this);
-                this.ChildrenNumber += 1;
+                ChildrenNumber += 1;
                 UserSingleton.GetInstance.ProcessingOrders.Add(this);
-                this.Tour.BookSeats(1);
+                Tour.BookSeats(1);
             }
             else if (!UserSingleton.GetInstance.IsAuthenticated)
             {
                 UserSingleton.VisitorProcessingOrders.Remove(this);
-                this.ChildrenNumber += 1;
+                ChildrenNumber += 1;
                 UserSingleton.VisitorProcessingOrders.Add(this);
-                this.Tour.BookSeats(1);
+                Tour.BookSeats(1);
             }
         }
 
         public bool CanRemoveChild()
         {
-            if (this.ChildrenNumber >= 1)
+            if (ChildrenNumber >= 1)
             {
                 return true;
             }
@@ -112,16 +112,16 @@ namespace Checkpoint4_V2
             if (UserSingleton.GetInstance.IsAuthenticated)
             {
                 UserSingleton.GetInstance.ProcessingOrders.Remove(this);
-                this.ChildrenNumber -= 1;
+                ChildrenNumber -= 1;
                 UserSingleton.GetInstance.ProcessingOrders.Add(this);
-                this.Tour.DeBookSeats(1);
+                Tour.DeBookSeats(1);
             }
             else if (!UserSingleton.GetInstance.IsAuthenticated)
             {
                 UserSingleton.VisitorProcessingOrders.Remove(this);
-                this.ChildrenNumber -= 1;
+                ChildrenNumber -= 1;
                 UserSingleton.VisitorProcessingOrders.Add(this);
-                this.Tour.DeBookSeats(1);
+                Tour.DeBookSeats(1);
             }
         }
 
@@ -161,7 +161,7 @@ namespace Checkpoint4_V2
             {
                 UserSingleton.VisitorProcessingOrders.Remove(this);
             }
-            this.Tour.DeBookSeats(this.AdultNumber + this.ChildrenNumber);
+            Tour.DeBookSeats(AdultNumber + ChildrenNumber);
         }
     }
 }

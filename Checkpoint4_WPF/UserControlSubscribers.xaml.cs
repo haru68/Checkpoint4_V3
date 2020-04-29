@@ -83,16 +83,16 @@ namespace Checkpoint4_WPF
             if(AreUserFieldsOk())
             {
                 string login = Login_TxtBox.Text;
-                string password = Passowrd_Box.Password;
+                string password = Password_Box.Password;
                 DateTime birthday = (DateTime) Birthday_DatePicker.SelectedDate;
-                short streetNum = Convert.ToInt16(StreetNum_TxtBox.Text);
+                short streetNumber = Convert.ToInt16(StreetNumber_TxtBox.Text);
                 string streetName = StreetName_TxtBox.Text;
                 string cityName = CityName_TxtBox.Text;
                 string postalCode = PostalCode_TxtBox.Text;
                 Region region = (Region) Region_cmbBox.SelectedItem;
 
                 City city = CityFactory.Get(cityName, postalCode, region);
-                Address address = AddressFactory.Get(streetNum, streetName, city);
+                Address address = AddressFactory.Get(streetNumber, streetName, city);
                 string encryptedPassword = Password.Encrypt(password.ToString());
 
                 if(!User.IsInDb(login, encryptedPassword))
@@ -120,9 +120,9 @@ namespace Checkpoint4_WPF
         private void ResetInscription()
         {
             Login_TxtBox.Text = string.Empty;
-            Passowrd_Box.Password = string.Empty;
+            Password_Box.Password = string.Empty;
             Birthday_DatePicker.SelectedDate = null;
-            StreetNum_TxtBox.Text = string.Empty;
+            StreetNumber_TxtBox.Text = string.Empty;
             StreetName_TxtBox.Text = string.Empty;
             CityName_TxtBox.Text = string.Empty;
             PostalCode_TxtBox.Text = string.Empty;
@@ -142,9 +142,9 @@ namespace Checkpoint4_WPF
         private bool AreUserFieldsOk()
         {
             bool isLoginComplete = InputChecker.IsLoginOK(Login_TxtBox.Text);
-            bool isPasswordComplete = InputChecker.IsPasswordOk(Passowrd_Box.Password);
+            bool isPasswordComplete = InputChecker.IsPasswordOk(Password_Box.Password);
             bool isBirthdayOk = InputChecker.IsBirthdayOk(Birthday_DatePicker.SelectedDate);
-            bool isStreetNumOk = InputChecker.IsStringOk(StreetNum_TxtBox.Text);
+            bool isStreetNumOk = InputChecker.IsStringOk(StreetNumber_TxtBox.Text);
             bool isStreetNameOk = InputChecker.IsStringOk(StreetName_TxtBox.Text);
             bool isCityNameOk = InputChecker.IsStringOk(CityName_TxtBox.Text);
             bool isPostalCodeOk = InputChecker.IsPostalCodeOk(PostalCode_TxtBox.Text);

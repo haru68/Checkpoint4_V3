@@ -2,7 +2,7 @@
 
 namespace Checkpoint4_V2
 {
-    public partial class City
+    public partial class City : AbstractDatabaseRecorder
     {
         public static bool IsInDb(string cityName, string postalCode)
         {
@@ -14,15 +14,6 @@ namespace Checkpoint4_V2
                           select c).Any();
             }
             return isInDb;
-        }
-
-        public void RecordInDb()
-        {
-            using (var context = new CircusContext())
-            {
-                context.Update(this);
-                context.SaveChanges();
-            }
         }
     }
 }

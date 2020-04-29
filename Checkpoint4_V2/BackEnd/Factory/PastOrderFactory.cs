@@ -21,9 +21,9 @@ namespace Checkpoint4_V2
         public static List<PastOrder> CreateSeveral(List<ProcessingOrder> processingOrders, User user)
         {
             List<PastOrder> pastOrders = new List<PastOrder>();
-            foreach(ProcessingOrder p in processingOrders)
+            foreach(ProcessingOrder processingOrder in processingOrders)
             {
-                PastOrder pastOrder = PastOrderFactory.Create(p, user);
+                PastOrder pastOrder = PastOrderFactory.Create(processingOrder, user);
                 pastOrders.Add(pastOrder);
             }
             return pastOrders;

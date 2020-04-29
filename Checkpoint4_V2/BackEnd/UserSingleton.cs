@@ -1,5 +1,4 @@
-﻿using Checkpoint4_V2.BackEnd;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 
 namespace Checkpoint4_V2
@@ -25,7 +24,7 @@ namespace Checkpoint4_V2
             }
         }
 
-        public void Refresh()
+        public void RefreshPastOrders()
         {
             var threadStartDelegate = new ThreadStart(OnRefreshStart);
             Thread refreshThread = new Thread(threadStartDelegate);
@@ -36,7 +35,7 @@ namespace Checkpoint4_V2
         {
             PastOrders = PastOrderLoader.Load(User);
             Thread.Sleep(5000);
-            Refresh();
+            RefreshPastOrders();
         }
 
         public void Init(string login, string password)
@@ -48,7 +47,7 @@ namespace Checkpoint4_V2
                 IsAuthenticated = true;
                 ProcessingOrders = VisitorProcessingOrders;
                 PastOrders = PastOrderLoader.Load(User);
-                UserSingleton.GetInstance.Refresh();
+                UserSingleton.GetInstance.RefreshPastOrders();
             }
         }
 
